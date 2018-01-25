@@ -1,17 +1,20 @@
 package by.tc.task01.dao.impl;
 
 import by.tc.task01.dao.ApplianceDAO;
+import by.tc.task01.dao.builder.ApplianceDirector;
 import by.tc.task01.entity.Appliance;
 import by.tc.task01.entity.criteria.Criteria;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
-
-import static by.tc.task01.dao.creator.ApplianceCreator.creator;
 
 public class ApplianceDAOImpl implements ApplianceDAO {
     private String FILE_PATH = "/Users/RomanChepki/Downloads/JWD_Task01_OOP-master-2/jwd-task01-template/src/main/resources/appliances_db.txt";
 
+    ApplianceDirector applianceDirector = new ApplianceDirector();
 
     @Override
     public <E> Appliance find(Criteria<E> criteria) throws IOException {
@@ -20,7 +23,7 @@ public class ApplianceDAOImpl implements ApplianceDAO {
         Set<Map.Entry<E, Object>> setCriteria = criteriaMap.entrySet();
 
         File file = new File(FILE_PATH);
-        Scanner scanner = new Scanner(file);
+
         boolean flag = true;
         String line;
 
@@ -37,9 +40,9 @@ public class ApplianceDAOImpl implements ApplianceDAO {
                 }
 
                 if (flag) {
-                    List initializationList = parser(line);
-                    Appliance appliance = creator(initializationList, criteria.getApplianceType());
-                    return appliance;
+
+
+                  return applianceDirector.getPreparedAppliance(criteria.getApplianceType()).buildAppliance(criteria);
                 }
             }
 
@@ -48,6 +51,9 @@ public class ApplianceDAOImpl implements ApplianceDAO {
             return null;
         }
         return null;
+
+
+
     }
 
 
