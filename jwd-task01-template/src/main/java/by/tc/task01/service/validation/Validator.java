@@ -16,6 +16,7 @@ public class Validator {
         }
 
         for (Object value : criteriaContent) {
+
             if (value instanceof Number) {
                 Number number = (Number) value;
                 double resultNumb = number.doubleValue();
