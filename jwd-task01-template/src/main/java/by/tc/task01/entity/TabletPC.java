@@ -5,9 +5,9 @@ public class TabletPC extends Appliance{
 
     private double displayInches;
 
-    private int memoryRom;
+    private double memoryRom;
 
-    private int flashMemoryCapacity;
+    private double flashMemoryCapacity;
 
     private String color;
 
@@ -30,19 +30,19 @@ public class TabletPC extends Appliance{
         this.displayInches = displayInches;
     }
 
-    public int getMemoryRom() {
+    public double getMemoryRom() {
         return memoryRom;
     }
 
-    public void setMemoryRom(int memoryRom) {
+    public void setMemoryRom(double memoryRom) {
         this.memoryRom = memoryRom;
     }
 
-    public int getFlashMemoryCapacity() {
+    public double getFlashMemoryCapacity() {
         return flashMemoryCapacity;
     }
 
-    public void setFlashMemoryCapacity(int flashMemoryCapacity) {
+    public void setFlashMemoryCapacity(double flashMemoryCapacity) {
         this.flashMemoryCapacity = flashMemoryCapacity;
     }
 
@@ -63,8 +63,8 @@ public class TabletPC extends Appliance{
 
         if (Double.compare(tabletPC.getBatteryCapacity(), getBatteryCapacity()) != 0) return false;
         if (Double.compare(tabletPC.getDisplayInches(), getDisplayInches()) != 0) return false;
-        if (getMemoryRom() != tabletPC.getMemoryRom()) return false;
-        if (getFlashMemoryCapacity() != tabletPC.getFlashMemoryCapacity()) return false;
+        if (Double.compare(tabletPC.getMemoryRom(), getMemoryRom()) != 0) return false;
+        if (Double.compare(tabletPC.getFlashMemoryCapacity(), getFlashMemoryCapacity()) != 0) return false;
         return getColor() != null ? getColor().equals(tabletPC.getColor()) : tabletPC.getColor() == null;
     }
 
@@ -76,8 +76,10 @@ public class TabletPC extends Appliance{
         result = (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(getDisplayInches());
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + getMemoryRom();
-        result = 31 * result + getFlashMemoryCapacity();
+        temp = Double.doubleToLongBits(getMemoryRom());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(getFlashMemoryCapacity());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (getColor() != null ? getColor().hashCode() : 0);
         return result;
     }

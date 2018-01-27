@@ -5,7 +5,7 @@ import by.tc.task01.dao.builder.impl.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public  class ApplianceDirector {
+public class ApplianceDirector {
     Map<String, ApplianceBuilder> appliancesMap = new HashMap<>();
 
     public ApplianceDirector() {
@@ -17,7 +17,9 @@ public  class ApplianceDirector {
         appliancesMap.put("Speakers", new SpeakersBuilder());
     }
 
-    public ApplianceBuilder getPreparedAppliance(String ApplianceName){
+    public ApplianceBuilder getPreparedAppliance(String ApplianceName) {
         return appliancesMap.get(ApplianceName);
     }
+
+
 }

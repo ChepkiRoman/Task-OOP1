@@ -1,7 +1,7 @@
 package by.tc.task01.entity;
 
 public class Refrigerator extends Appliance{
-    private int powerConsumption;
+    private double powerConsumption;
 
     private double weight;
 
@@ -16,11 +16,11 @@ public class Refrigerator extends Appliance{
     public Refrigerator(){
     }
 
-    public int getPowerConsumption() {
+    public double getPowerConsumption() {
         return powerConsumption;
     }
 
-    public void setPowerConsumption(int powerConsumption) {
+    public void setPowerConsumption(double powerConsumption) {
         this.powerConsumption = powerConsumption;
     }
 
@@ -83,16 +83,17 @@ public class Refrigerator extends Appliance{
     public int hashCode() {
         int result;
         long temp;
-        result = powerConsumption;
-        temp = Double.doubleToLongBits(weight);
+        temp = Double.doubleToLongBits(getPowerConsumption());
+        result = (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(getWeight());
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(freezerCapacity);
+        temp = Double.doubleToLongBits(getFreezerCapacity());
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(overallCapacity);
+        temp = Double.doubleToLongBits(getOverallCapacity());
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(height);
+        temp = Double.doubleToLongBits(getHeight());
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(width);
+        temp = Double.doubleToLongBits(getWidth());
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }

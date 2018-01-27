@@ -1,8 +1,6 @@
 package by.tc.task01.entity.criteria;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Criteria<E> {
 
@@ -28,7 +26,13 @@ public class Criteria<E> {
 	public void setApplianceType(String applianceType) {
 		this.applianceType = applianceType;
 	}
-
+	public List<String> getStringCriteria() {
+		List<String> arr = new ArrayList<>();
+		for (Map.Entry<E, Object> entry : criteria.entrySet()) {
+			arr.add(entry.getKey().toString().toUpperCase() + "=" + entry.getValue().toString().toLowerCase());
+		}
+		return arr;
+	}
 
 
 

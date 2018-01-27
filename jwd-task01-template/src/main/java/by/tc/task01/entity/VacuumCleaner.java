@@ -1,7 +1,7 @@
 package by.tc.task01.entity;
 
 public class VacuumCleaner extends Appliance{
-    private int powerConsumption;
+    private double powerConsumption;
 
     private String filterType;
 
@@ -9,18 +9,18 @@ public class VacuumCleaner extends Appliance{
 
     private String wandType;
 
-    private int motorSpeedRegulation;
+    private double motorSpeedRegulation;
 
-    private int cleaningWidth;
+    private double cleaningWidth;
 
     public VacuumCleaner() {
     }
 
-    public int getPowerConsumption() {
+    public double getPowerConsumption() {
         return powerConsumption;
     }
 
-    public void setPowerConsumption(int powerConsumption) {
+    public void setPowerConsumption(double powerConsumption) {
         this.powerConsumption = powerConsumption;
     }
 
@@ -48,19 +48,19 @@ public class VacuumCleaner extends Appliance{
         this.wandType = wandType;
     }
 
-    public int getMotorSpeedRegulation() {
+    public double getMotorSpeedRegulation() {
         return motorSpeedRegulation;
     }
 
-    public void setMotorSpeedRegulation(int motorSpeedRegulation) {
+    public void setMotorSpeedRegulation(double motorSpeedRegulation) {
         this.motorSpeedRegulation = motorSpeedRegulation;
     }
 
-    public int getCleaningWidth() {
+    public double getCleaningWidth() {
         return cleaningWidth;
     }
 
-    public void setCleaningWidth(int cleaningWidth) {
+    public void setCleaningWidth(double cleaningWidth) {
         this.cleaningWidth = cleaningWidth;
     }
 
@@ -71,9 +71,9 @@ public class VacuumCleaner extends Appliance{
 
         VacuumCleaner that = (VacuumCleaner) o;
 
-        if (getPowerConsumption() != that.getPowerConsumption()) return false;
-        if (getMotorSpeedRegulation() != that.getMotorSpeedRegulation()) return false;
-        if (getCleaningWidth() != that.getCleaningWidth()) return false;
+        if (Double.compare(that.getPowerConsumption(), getPowerConsumption()) != 0) return false;
+        if (Double.compare(that.getMotorSpeedRegulation(), getMotorSpeedRegulation()) != 0) return false;
+        if (Double.compare(that.getCleaningWidth(), getCleaningWidth()) != 0) return false;
         if (getFilterType() != null ? !getFilterType().equals(that.getFilterType()) : that.getFilterType() != null)
             return false;
         if (getBagType() != null ? !getBagType().equals(that.getBagType()) : that.getBagType() != null) return false;
@@ -82,12 +82,17 @@ public class VacuumCleaner extends Appliance{
 
     @Override
     public int hashCode() {
-        int result = getPowerConsumption();
+        int result;
+        long temp;
+        temp = Double.doubleToLongBits(getPowerConsumption());
+        result = (int) (temp ^ (temp >>> 32));
         result = 31 * result + (getFilterType() != null ? getFilterType().hashCode() : 0);
         result = 31 * result + (getBagType() != null ? getBagType().hashCode() : 0);
         result = 31 * result + (getWandType() != null ? getWandType().hashCode() : 0);
-        result = 31 * result + getMotorSpeedRegulation();
-        result = 31 * result + getCleaningWidth();
+        temp = Double.doubleToLongBits(getMotorSpeedRegulation());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(getCleaningWidth());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
 

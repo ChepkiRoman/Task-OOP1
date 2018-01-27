@@ -9,7 +9,7 @@ public class PrintApplianceInfo {
 			System.out.println("There is no appliance");
 		}
 		else {
-			System.out.println(appliance.toString());
+			System.out.println(appliance);
 		}
 
 	}

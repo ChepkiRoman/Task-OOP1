@@ -5,9 +5,9 @@ public class Laptop extends Appliance{
 
     private String os;
 
-    private int memoryRom;
+    private double memoryRom;
 
-    private int systemMemory;
+    private double systemMemory;
 
     private double cpu;
 
@@ -32,19 +32,19 @@ public class Laptop extends Appliance{
         this.os = os;
     }
 
-    public int getMemoryRom() {
+    public double getMemoryRom() {
         return memoryRom;
     }
 
-    public void setMemoryRom(int memoryRom) {
+    public void setMemoryRom(double memoryRom) {
         this.memoryRom = memoryRom;
     }
 
-    public int getSystemMemory() {
+    public double getSystemMemory() {
         return systemMemory;
     }
 
-    public void setSystemMemory(int systemMemory) {
+    public void setSystemMemory(double systemMemory) {
         this.systemMemory = systemMemory;
     }
 
@@ -86,8 +86,10 @@ public class Laptop extends Appliance{
         temp = Double.doubleToLongBits(getBatteryCapacity());
         result = (int) (temp ^ (temp >>> 32));
         result = 31 * result + (getOs() != null ? getOs().hashCode() : 0);
-        result = 31 * result + getMemoryRom();
-        result = 31 * result + getSystemMemory();
+        temp = Double.doubleToLongBits(getMemoryRom());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(getSystemMemory());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(getCpu());
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(getDisplayInches());

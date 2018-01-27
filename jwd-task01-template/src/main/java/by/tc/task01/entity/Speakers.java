@@ -1,9 +1,9 @@
 package by.tc.task01.entity;
 
 public class Speakers extends Appliance{
-    private int powerConsumption;
+    private double powerConsumption;
 
-    private int numberOfSpeakers;
+    private double numberOfSpeakers;
 
     private String FrequencyRange;
 
@@ -12,19 +12,19 @@ public class Speakers extends Appliance{
     public Speakers() {
     }
 
-    public int getPowerConsumption() {
+    public double getPowerConsumption() {
         return powerConsumption;
     }
 
-    public void setPowerConsumption(int powerConsumption) {
+    public void setPowerConsumption(double powerConsumption) {
         this.powerConsumption = powerConsumption;
     }
 
-    public int getNumberOfSpeakers() {
+    public double getNumberOfSpeakers() {
         return numberOfSpeakers;
     }
 
-    public void setNumberOfSpeakers(int numberOfSpeakers) {
+    public void setNumberOfSpeakers(double numberOfSpeakers) {
         this.numberOfSpeakers = numberOfSpeakers;
     }
 
@@ -51,8 +51,8 @@ public class Speakers extends Appliance{
 
         Speakers speakers = (Speakers) o;
 
-        if (getPowerConsumption() != speakers.getPowerConsumption()) return false;
-        if (getNumberOfSpeakers() != speakers.getNumberOfSpeakers()) return false;
+        if (Double.compare(speakers.getPowerConsumption(), getPowerConsumption()) != 0) return false;
+        if (Double.compare(speakers.getNumberOfSpeakers(), getNumberOfSpeakers()) != 0) return false;
         if (Double.compare(speakers.getCordLength(), getCordLength()) != 0) return false;
         return getFrequencyRange() != null ? getFrequencyRange().equals(speakers.getFrequencyRange()) : speakers.getFrequencyRange() == null;
     }
@@ -61,8 +61,10 @@ public class Speakers extends Appliance{
     public int hashCode() {
         int result;
         long temp;
-        result = getPowerConsumption();
-        result = 31 * result + getNumberOfSpeakers();
+        temp = Double.doubleToLongBits(getPowerConsumption());
+        result = (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(getNumberOfSpeakers());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (getFrequencyRange() != null ? getFrequencyRange().hashCode() : 0);
         temp = Double.doubleToLongBits(getCordLength());
         result = 31 * result + (int) (temp ^ (temp >>> 32));

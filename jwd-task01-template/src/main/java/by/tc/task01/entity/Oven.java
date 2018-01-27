@@ -1,7 +1,7 @@
 package by.tc.task01.entity;
 
 public class Oven extends Appliance{
-    private int powerConsumption;
+    private double powerConsumption;
 
     private double weight;
 
@@ -16,11 +16,11 @@ public class Oven extends Appliance{
     public Oven() {
     }
 
-    public int getPowerConsumption() {
+    public double getPowerConsumption() {
         return powerConsumption;
     }
 
-    public void setPowerConsumption(int powerConsumption) {
+    public void setPowerConsumption(double powerConsumption) {
         this.powerConsumption = powerConsumption;
     }
 
@@ -83,7 +83,8 @@ public class Oven extends Appliance{
     public int hashCode() {
         int result;
         long temp;
-        result = getPowerConsumption();
+        temp = Double.doubleToLongBits(getPowerConsumption());
+        result = (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(getWeight());
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(getCapacity());
