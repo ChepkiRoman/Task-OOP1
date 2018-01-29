@@ -1,6 +1,6 @@
 package by.tc.task01.entity;
 
-public class Oven extends Appliance{
+public class Oven implements Appliance{
     private double powerConsumption;
 
     private double weight;
