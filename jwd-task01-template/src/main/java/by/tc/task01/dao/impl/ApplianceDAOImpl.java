@@ -15,9 +15,10 @@ import java.util.List;
 public class ApplianceDAOImpl implements ApplianceDAO {
 
 
-    ApplianceDirector applianceDirector = new ApplianceDirector();
-    FileLoaderImpl file = new FileLoaderImpl();
-    BufferedReader reader;
+    // куда пропали атрибуты доступа
+    ApplianceDirector applianceDirector = new ApplianceDirector(); // зачем каждый раз создавать новый объект, ончем-то отличаться будут?
+    FileLoaderImpl file = new FileLoaderImpl();// а это что еще за разделяемый ресурс
+    BufferedReader reader; // и это - мы данную ошибку разбирали больше недели назад, можно было успеть поправить, что ли
 
     @Override
     public <E> Appliance find(Criteria<E> criteria) throws IOException {
@@ -27,7 +28,7 @@ public class ApplianceDAOImpl implements ApplianceDAO {
             int matchedCriteriasCount = 0;
             while ((line = reader.readLine()) != null) {
                 if (line.contains(criteria.getApplianceType())) {
-                    {
+                    {// методы и классы в Java бесплатны, пользуйся и создавай их, не лепи кучу разботы в один метод
                         for (String compareCriteria : criteria.getStringCriteria()) {
                             if (line.contains(compareCriteria + ',') || line.contains(compareCriteria + ';')) {
                                 matchedCriteriasCount++;
