@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ApplianceDirector {
-    Map<String, ApplianceBuilder> appliancesMap = new HashMap<>();
+    Map<String, ApplianceBuilder> appliancesMap = new HashMap<>();// атрибуты кто ворует?
 
     public ApplianceDirector() {
         appliancesMap.put("Oven", new OvenBuilder());
