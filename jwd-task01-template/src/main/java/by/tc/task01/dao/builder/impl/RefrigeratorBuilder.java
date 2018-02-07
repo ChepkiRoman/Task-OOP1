@@ -12,7 +12,7 @@ public class RefrigeratorBuilder implements ApplianceBuilder {
     public <E> Appliance buildAppliance(List<String> criteriaList) {
 
         Refrigerator refrigerator = new Refrigerator();
-        refrigerator.setPowerConsumption(Double.parseDouble(criteriaList.get(0)));
+        refrigerator.setPowerConsumption(Double.parseDouble(criteriaList.get(0)));// именуйте же вы константы
         refrigerator.setWeight(Double.parseDouble(criteriaList.get(1)));
         refrigerator.setFreezerCapacity(Double.parseDouble(criteriaList.get(2)));
         refrigerator.setOverallCapacity(Double.parseDouble(criteriaList.get(3)));
