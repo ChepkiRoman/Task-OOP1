@@ -27,7 +27,8 @@ public class Criteria<E> {
 	public void setApplianceType(String applianceType) {
 		this.applianceType = applianceType;
 	}
-	public List<String> getStringCriteria() {
+	public List<String> getStringCriteria() {// что за бред, если тебе надо как-то преобразовывать параметры, чтобы где-то что-то отыскать - то это явно не дело класса Criteria
+		// мало ли кода критериями пользуется, на всех преобразваний не  наберешься
 		List<String> arr = new ArrayList<>();
 		for (Map.Entry<E, Object> entry : criteria.entrySet()) {
 			arr.add(entry.getKey().toString().toUpperCase() + "=" + entry.getValue().toString().toLowerCase());
